@@ -24,7 +24,7 @@ export default class FileManagerClient {
     return result
   }
 
-  async getdataFromFile (filename) {
+  async getDataFromFile (filename) {
     let result = null
     try {
       const res = await axios.get(`${BASE_PATH_SERVICE}/file/${filename}`, this.config)

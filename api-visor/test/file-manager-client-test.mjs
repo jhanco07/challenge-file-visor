@@ -32,7 +32,7 @@ describe('Test FileManagerClient.loadFileList', () => {
 describe('Test FileManagerClient.getdataFromFile', () => {
   it('load data from file', (done) => {
     const fileManagerClient = new FileManagerClient()
-    fileManagerClient.getdataFromFile('test6.csv').then((res) => {
+    fileManagerClient.getDataFromFile('test6.csv').then((res) => {
       expect(res).to.not.be.null
     })
     done()
