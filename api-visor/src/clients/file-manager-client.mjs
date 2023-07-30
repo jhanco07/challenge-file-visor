@@ -1,24 +1,15 @@
 import axios from 'axios'
-import { BASE_PATH_SERVICE, KEY } from '../utils/constants.mjs'
 
 export default class FileManagerClient {
-  config = null
+  
 
-  constructor () {
-    this.config = {
-      headers: {
-        Authorization: `Bearer ${KEY}`
-      }
-    }
-  }
-
-  async loadFileList () {
+  async loadFileList () { 
     let result = null
     try {
-      const res = await axios.get(`${BASE_PATH_SERVICE}/files`, this.config)
+      const res = await axios.get(`${process.env.BASE_PATH_SERVICE}/files`, this.setHeaders())
       result = Array.from(res.data.files)
     } catch (e) {
-      console.error(e)
+      //console.error(e)
       throw e
     }
     return result
@@ -27,11 +18,21 @@ export default class FileManagerClient {
   async getDataFromFile (filename) {
     let result = null
     try {
-      const res = await axios.get(`${BASE_PATH_SERVICE}/file/${filename}`, this.config)
+      const res = await axios.get(`${process.env.BASE_PATH_SERVICE}/file/${filename}`, this.setHeaders())
       result = res.data
     } catch (e) {
       console.warn(`Warning: error load file ${filename}: ${e.message}`)
     }
     return result
   }
+
+   setHeaders(){
+      var config= {
+        headers: {
+          Authorization: `Bearer ${process.env.KEY}`
+        }
+      } 
+      console.log(config);
+      return config;
+   }
 }
