@@ -1,27 +1,14 @@
-# Etapa 1: Construir la aplicación de React
-FROM node:16-alpine AS build
-
-WORKDIR /app
-
-COPY package.json package-lock.json ./
-
-RUN npm ci
-
-COPY public ./public 
-
-COPY . .
-
-RUN npm run build
-
-# Etapa 2: Crear la imagen para producción
 FROM node:16-alpine
 
-WORKDIR /app
+RUN npm install -g create-react-app
 
-COPY --from=build /app/build ./build
-COPY --from=build /app/package.json /app/package-lock.json ./
+WORKDIR /usr/src/app
 
-RUN npm install --production
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
 
 EXPOSE 3001
 
