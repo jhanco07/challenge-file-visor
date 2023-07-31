@@ -48,7 +48,8 @@ docker-compose up --build
 ```
 
 4. The applications will be available at the following URLs:
-   - visor-gui on port 3001 (http://localhost:3001)
+   - visor-gui on port 3001 (http://localhost:3001):
+       - view data specific file: http://localhost:3001/?fileName=test3.csv
    - api-visor on port 3000 (http://localhost:3000):
        - Get data from all files: http://localhost:3000/v1/files/data
        - Get data from specific file: http://localhost:3000/v1/files/data?fileName=test3.csv
