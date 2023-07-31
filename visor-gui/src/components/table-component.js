@@ -17,7 +17,7 @@ const TableComponent = () => {
             const fileName = queryParameters.get("fileName");
             var url ='http://localhost:3000/v1/files/data';
             if(fileName){
-               url =`http://localhost:3000/v1/files/data?fileName=${fileName}`;
+               url =`${url}?fileName=${fileName}`;
             }
             var response = await axios.get(url);
             dispatch(setData(response.data)); 

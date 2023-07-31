@@ -43,14 +43,14 @@ export default  class FileManagerService {
         var listFiles=await this.getFilesList();
         var listLoad=[];
         if(fileName){ 
-            var dataClean= await this.processLoadData(fileName);
+            const dataClean= await this.processLoadData(fileName);
             if(dataClean && dataClean.lines && dataClean.lines.length > 0){
                     listLoad=listLoad.concat(dataClean);
             }
             return listLoad;
         }
         for (const file of listFiles) {
-            var dataClean= await this.processLoadData(file);
+            const dataClean= await this.processLoadData(file);
             if(dataClean && dataClean.lines && dataClean.lines.length > 0){
                 listLoad=listLoad.concat(dataClean);
             }
