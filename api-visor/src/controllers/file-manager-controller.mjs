@@ -22,6 +22,7 @@ export default class FileManagerController{
             res.status(500).code
             result="Error when load files list";
         }
+        res.set('Content-Type', 'application/json');
         res.status(200).json({files: result});
       }
 
@@ -52,6 +53,7 @@ export default class FileManagerController{
         let result= null;
         try{
             result= await this.fileManagerService.loadAllData();
+            res.set('Content-Type', 'application/json');
             res.status(200).code
         }catch(e){
             res.status(500).code

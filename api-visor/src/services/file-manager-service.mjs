@@ -38,7 +38,7 @@ export default  class FileManagerService {
             try{
                 var fileres=  await this.getDataFromFile(file);
                 var dataClean= this.cleanData(fileres, file);
-                if(dataClean !== null && dataClean.lines.length > 0){
+                if(dataClean && dataClean.lines && dataClean.lines.length > 0){
                      listLoad=listLoad.concat(dataClean);
                 }
             }catch(e){console.log(e)}
@@ -50,8 +50,9 @@ export default  class FileManagerService {
 
     cleanData(data, fileName){ 
 
+        if(!data)return;
+
         const lines = data.split("\n");
-        // Iterar a través de las líneas, comenzando desde la segunda línea
        
         let result= [];
         if(lines.length<=1){
