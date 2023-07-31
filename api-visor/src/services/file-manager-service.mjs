@@ -31,19 +31,31 @@ export default  class FileManagerService {
         return result
     }
 
-    async loadAllData(){
+    async processLoadData(fileName){
+        try{
+            var fileres=  await this.getDataFromFile(fileName);
+            var dataClean= this.cleanData(fileres, fileName);
+            return dataClean;
+        }catch(e){console.log(e)}
+    }
+
+    async loadAllData(fileName=null){
         var listFiles=await this.getFilesList();
         var listLoad=[];
-        for (const file of listFiles) {
-            try{
-                var fileres=  await this.getDataFromFile(file);
-                var dataClean= this.cleanData(fileres, file);
-                if(dataClean && dataClean.lines && dataClean.lines.length > 0){
-                     listLoad=listLoad.concat(dataClean);
-                }
-            }catch(e){console.log(e)}
+        if(fileName){ 
+            var dataClean= await this.processLoadData(fileName);
+            if(dataClean && dataClean.lines && dataClean.lines.length > 0){
+                    listLoad=listLoad.concat(dataClean);
+            }
+            return listLoad;
         }
-
+        for (const file of listFiles) {
+            var dataClean= await this.processLoadData(file);
+            if(dataClean && dataClean.lines && dataClean.lines.length > 0){
+                listLoad=listLoad.concat(dataClean);
+            }
+        }
+        
         return listLoad;
 
     }

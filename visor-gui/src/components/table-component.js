@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import { setData } from '../reducers/files-reducer';
@@ -13,8 +13,14 @@ const TableComponent = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://localhost:3000/v1/loadAllDataFile');
-            dispatch(setData(response.data)); // Enviar los datos obtenidos a Redux
+            const queryParameters = new URLSearchParams(window.location.search);
+            const fileName = queryParameters.get("fileName");
+            var url ='http://localhost:3000/v1/files/data';
+            if(fileName){
+               url =`http://localhost:3000/v1/files/data?fileName=${fileName}`;
+            }
+            var response = await axios.get(url);
+            dispatch(setData(response.data)); 
           } catch (error) {
             console.error('Error al obtener los datos:', error);
           }

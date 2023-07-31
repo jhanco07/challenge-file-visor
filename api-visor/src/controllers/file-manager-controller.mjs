@@ -8,9 +8,6 @@ export default class FileManagerController{
         this.fileManagerService= new FileManagerService();
     }
 
-    
-
-    
     async getFilesList(req, res) {
         let result= null;
         try {
@@ -25,34 +22,12 @@ export default class FileManagerController{
         res.set('Content-Type', 'application/json');
         res.status(200).json({files: result});
       }
-
-      async getDataFromFile(req, res) {
-        try {
-          let file = req.query.fileName;
-          if (!file) {
-            res.status(400).json("Bad request");
-            return;
-          }
-      
-          const result = await this.fileManagerService.getDataFromFile(file);
-          if (result === null) {
-            res.status(404).json("Not found");
-            return;
-          }
-      
-          res.set('Content-Type', 'text/csv');
-          res.status(200).send(result);
-        } catch (err) {
-          console.error(err);
-          res.status(500).json("Error when loading files list");
-        }
-      }
       
 
       async loadAllDataFile(req, res){
         let result= null;
         try{
-            result= await this.fileManagerService.loadAllData();
+            result= await this.fileManagerService.loadAllData(req.query.fileName);
             res.set('Content-Type', 'application/json');
             res.status(200).code
         }catch(e){
