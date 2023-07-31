@@ -1,9 +1,8 @@
+import express from 'express'
+import FileManagerController from '../controllers/file-manager-controller.mjs'
 
-import express from 'express';
-import FileManagerController from '../controllers/file-manager-controller.mjs';
-
-const fileManagerController = new FileManagerController();
-const router = express.Router();
+const fileManagerController = new FileManagerController()
+const router = express.Router()
 
 /**
  * @swagger
@@ -40,12 +39,7 @@ const router = express.Router();
  *                           description: Valor hexadecimal.
  */
 
-router.get('/files/list', (req, res) => fileManagerController.getFilesList(req, res));
-router.get('/files/data', (req, res) => fileManagerController.loadAllDataFile(req, res));
+router.get('/files/list', (req, res) => fileManagerController.getFilesList(req, res))
+router.get('/files/data', (req, res) => fileManagerController.loadAllDataFile(req, res))
 
-
-
-
-export default router;
-
-
+export default router

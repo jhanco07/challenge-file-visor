@@ -1,18 +1,11 @@
 import axios from 'axios'
 
 export default class FileManagerClient {
-  
+  async loadFileList () {
+    const res = await axios.get(`${process.env.BASE_PATH_SERVICE}/files`, this.setHeaders())
+    const result = Array.from(res.data.files)
 
-  async loadFileList () { 
-    let result = null
-    try {
-      const res = await axios.get(`${process.env.BASE_PATH_SERVICE}/files`, this.setHeaders())
-      result = Array.from(res.data.files)
-    } catch (e) {
-      //console.error(e)
-      throw e
-    }
-    return result;
+    return result
   }
 
   async getDataFromFile (filename) {
@@ -26,11 +19,11 @@ export default class FileManagerClient {
     return result
   }
 
-   setHeaders(){
-      return {
-        headers: {
-          Authorization: `Bearer ${process.env.KEY}`
-        }
-      } 
-   }
+  setHeaders () {
+    return {
+      headers: {
+        Authorization: `Bearer ${process.env.KEY}`
+      }
+    }
+  }
 }
