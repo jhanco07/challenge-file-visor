@@ -8,7 +8,7 @@ import TableComponent from '../components/table-component';
 const HomePage = () => {
   return (
     <Container>
-      <h1>Tabla Centrada con Cuatro Columnas</h1>
+      <Container className="fluid d-flex full-screen-container ">React Test App</Container>
       <TableComponent />
   </Container>
   );

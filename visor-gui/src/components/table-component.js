@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
 import { setData } from '../reducers/files-reducer';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -23,17 +24,18 @@ const TableComponent = () => {
       }, [dispatch]); 
 
     return (
-        <Container className="d-flex justify-content-center">
-        <Table bordered responsive className="text-center" style={{ width: '90%' }}>
+        <Container className="table_position fluid">
+        <Table striped className="table-bordered" >
           <thead>
             <tr>
               <th>File Name</th>
               <th>Text</th>
               <th>Number</th>
-              <th>Hex</th>
+              <th >Hex</th>
             </tr>
+            <tr  className="custom-border-row"></tr>
           </thead>
-          <tbody>
+          <tbody >
           {data.map((file, index) => (
             file.lines.map((line, i) => (
               <tr key={i} className={i % 2 === 0 ? 'table-row-even' : 'table-row-odd'}>

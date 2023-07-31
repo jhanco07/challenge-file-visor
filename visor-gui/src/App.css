@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.full-screen-container {
+  width:  100vw; 
+  height: 35px;
+
+  justify-content: left;
+  align-items: center;
+  background-color: #F05A5A; 
+  border: 1px solid #cc0000;
+  color: white; 
+  font-weight: bold; 
+  font-size: 25px; 
+}
+
+.table_position {
+  padding: 20px 20px 20px 20px;
+}
+
+.custom-border-row {
+  border: 4px solid black; /* Aplica un borde rojo de 1 píxel a la fila */
+}
