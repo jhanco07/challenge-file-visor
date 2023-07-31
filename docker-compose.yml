@@ -1,0 +1,19 @@
+version: '3'
+services:
+  react-app:
+    build:
+      context: ./visor-gui
+      dockerfile: Dockerfile
+    volumes:
+      - ./visor-gui:/app
+    ports:
+      - "3001:3001"
+    command: ["npm", "start"]
+
+  express-app:
+    build:
+      context: ./api-visor
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    command: ["npm", "start"]
