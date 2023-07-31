@@ -9,6 +9,8 @@ export default class FileManagerController{
     }
 
     
+
+    
     async getFilesList(req, res) {
         let result= null;
         try {
@@ -20,9 +22,42 @@ export default class FileManagerController{
             res.status(500).code
             result="Error when load files list";
         }
-        res.json(result);
+        res.status(200).json({files: result});
       }
 
+      async getDataFromFile(req, res) {
+        try {
+          let file = req.query.fileName;
+          if (!file) {
+            res.status(400).json("Bad request");
+            return;
+          }
+      
+          const result = await this.fileManagerService.getDataFromFile(file);
+          if (result === null) {
+            res.status(404).json("Not found");
+            return;
+          }
+      
+          res.set('Content-Type', 'text/csv');
+          res.status(200).send(result);
+        } catch (err) {
+          console.error(err);
+          res.status(500).json("Error when loading files list");
+        }
+      }
+      
 
+      async loadAllDataFile(req, res){
+        let result= null;
+        try{
+            result= await this.fileManagerService.loadAllData();
+            res.status(200).code
+        }catch(e){
+            res.status(500).code
+            result="Error when load data";
+        }
+        res.json(result);
+      }
 
 }

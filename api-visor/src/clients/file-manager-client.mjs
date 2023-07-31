@@ -12,7 +12,7 @@ export default class FileManagerClient {
       //console.error(e)
       throw e
     }
-    return result
+    return result;
   }
 
   async getDataFromFile (filename) {
@@ -27,12 +27,10 @@ export default class FileManagerClient {
   }
 
    setHeaders(){
-      var config= {
+      return {
         headers: {
           Authorization: `Bearer ${process.env.KEY}`
         }
       } 
-      console.log(config);
-      return config;
    }
 }

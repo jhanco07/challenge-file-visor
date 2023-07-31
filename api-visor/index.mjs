@@ -1,11 +1,12 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import router from './src/routes/app-routes.mjs'
-import {PORT} from './src/utils/constants.mjs'
+import bodyParser from 'body-parser';
 
 const app = express()
 dotenv.config()
 
+app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000
 
