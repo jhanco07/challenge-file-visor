@@ -1,18 +1,18 @@
 // reducers/myReducer.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  data: [],
-};
+  data: []
+}
 const filesReducer = createSlice({
   name: 'filesReducer',
   initialState,
   reducers: {
     setData: (state, action) => {
-      state.data = action.payload;
-    },
-  },
-});
+      state.data = action.payload
+    }
+  }
+})
 
-export const { setData } = filesReducer.actions;
-export default filesReducer.reducer;
+export const { setData } = filesReducer.actions
+export default filesReducer.reducer
