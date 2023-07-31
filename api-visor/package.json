@@ -27,5 +27,11 @@
     "mocha": "^10.2.0",
     "nodemon": "^2.0.13",
     "standard": "^17.1.0"
+  },
+  "standard": {
+    "ignore": [
+      "**/*-test.mjs",
+      "**/*.spec.mjs"
+    ]
   }
 }
